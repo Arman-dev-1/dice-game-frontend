@@ -35,11 +35,6 @@ export default function DiceGame() {
       const response = await axios.post<RollDiceResponse>("https://dice-game-n50g.onrender.com/roll-dice", { publicSeed });
       const { diceRoll, hash, secretSeed } = response.data;
 
-      console.log("Dice roll:", diceRoll);
-      console.log("Hash:", hash);
-      console.log("Secret seed:", secretSeed);
-      console.log("Public seed:", publicSeed);
-
       setDiceRoll(diceRoll);
       setHash(hash);
       setSecretSeed(secretSeed);
@@ -50,8 +45,6 @@ export default function DiceGame() {
         interface VerifyRollResponse {
           computedHash: string;
         }
-
-        console.log(publicSeed, secretSeed);
 
         const response = await axios.post<VerifyRollResponse>("https://dice-game-n50g.onrender.com/verify-roll", { publicSeed, secretSeed });
         const computedHash = response.data.computedHash;
